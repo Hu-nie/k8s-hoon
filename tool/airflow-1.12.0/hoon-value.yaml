@@ -23,14 +23,6 @@ scheduler:
     failureThreshold: 20
     periodSeconds: 60
   replicas: 2
-# webserver:
-#   service:
-#     type: NodePort
-#     ports:
-#        - name: airflow-ui
-#          port: "{{ .Values.ports.airflowUI }}" 
-#          targetPort: "{{ .Values.ports.airflowUI }}" 
-#          nodePort: 31151
 postgresql:
   enabled: true
   image:
@@ -48,14 +40,6 @@ postgresql:
         postgresql: 30032
     persistence:
       size: 20Gi
-
-# web:
-#   service:
-#     annotations: {}
-#     type: ClusterIP
-#     externalPort: 8080
-#     loadBalancerIP: ""
-#     loadBalancerSourceRanges: []
 ingress:
   web:
     enabled: true

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from textwrap import dedent
 
-# The DAG object; we'll need this to instantiate a DAGasd
+# The DAG object; we'll need this to instantiate a DAGasd1ㅊ튜 vnnhnnnnnnnnnnhnhnhnhnhnhnhnhnhnhnhnhnhnhnhnhnhnhnhnnnn
 from airflow import DAG
 
 # Operators; we need this to operate!
