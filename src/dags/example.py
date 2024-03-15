@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import Dummyoperator
+from airflow.operators.dummy import DummyOperator
 from airflow.operators.python_operator import PythonVirtualenvOperator
 # data_scraper.py에서 main 함수를 가져옵니다.
 from data_scraper import main
