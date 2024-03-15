@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import DummyOerator
+from airflow.operators.dummy import DummyOperator
 from airflow.operators.python_operator import PythonVirtualenvOperator
 # data_scraper.py에서 main 함수를 가져옵니다.
 from data_scraper import main
@@ -25,7 +25,7 @@ with DAG(
     catchup=False,
 ) as dag:
     
-    start = DummyOerator(task_id = 'start')
+    start = DummyOperator(task_id = 'start')
     # 파이썬 함수 실행
     run_scraper = PythonVirtualenvOperator(
         task_id='run_data_scraper',
@@ -34,6 +34,6 @@ with DAG(
         system_site_packages=True,
     )
 
-    end = DummyOerator(task_id = 'start')
+    end = DummyOperator(task_id = 'start')
 
 start >> run_scraper >> end 
