@@ -1,0 +1,18 @@
+extraArgs:
+- --namespace=kubernetes-dashboard
+- --system-banner="Welcome to Kubernetes"
+- --enable-insecure-login
+- --token-ttl=0
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+  - k8s-dashboard.hu-nie.com
+  tls:
+  - hosts:
+    - k8s-dashboard.hu-nie.com
+metricsScraper:
+  enabled: true
+rbac:
+  clusterReadOnlyRole: true
+  clusterAdminRole: true

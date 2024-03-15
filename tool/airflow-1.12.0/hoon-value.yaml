@@ -1,0 +1,71 @@
+executor: "KubernetesExecutor" 
+webserverSecretKey: webserver-secret-key
+webserverSecretKeySecretName: airflow-webserver-secret
+data:
+  metadataConnection:
+    user: user
+    pass: password
+    db: airflow
+dags:
+  gitSync:
+    enabled: true
+    repo: git@github.com:Hu-nie/k8s-hoon.git
+    branch: main
+    rev: HEAD
+    depth: 1
+    maxFailures: 0
+    subPath: src/dags
+    sshKeySecret: "airflow-ssh-git-secret"
+scheduler:
+  livenessProbe:
+    initialDelaySeconds: 10
+    timeoutSeconds: 120
+    failureThreshold: 20
+    periodSeconds: 60
+  replicas: 2
+# webserver:
+#   service:
+#     type: NodePort
+#     ports:
+#        - name: airflow-ui
+#          port: "{{ .Values.ports.airflowUI }}" 
+#          targetPort: "{{ .Values.ports.airflowUI }}" 
+#          nodePort: 31151
+postgresql:
+  enabled: true
+  image:
+    tag: 11.22.0
+  auth:
+    enablePostgresUser: true
+    postgresPassword: postgres
+    username: user 
+    password: password
+    database: "airflow" 
+  primary:
+    service:
+      type: NodePort
+      nodePorts:
+        postgresql: 30032
+    persistence:
+      size: 20Gi
+
+# web:
+#   service:
+#     annotations: {}
+#     type: ClusterIP
+#     externalPort: 8080
+#     loadBalancerIP: ""
+#     loadBalancerSourceRanges: []
+ingress:
+  web:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      ingress.kubernetes.io/rewrite-target: /
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    hosts:
+        - name: airflow.hu-nie.com
+          tls:
+            enabled: true
+            secretName: hoon
+
