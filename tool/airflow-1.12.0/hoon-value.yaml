@@ -14,7 +14,7 @@ dags:
     rev: HEAD
     depth: 1
     maxFailures: 0
-    subPath: src/dags
+    subPath: dags
     sshKeySecret: "airflow-ssh-git-secret"
 scheduler:
   livenessProbe:
