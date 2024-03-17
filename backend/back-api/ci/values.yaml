@@ -1,0 +1,70 @@
+# Replica count
+replicaCount: 1
+
+image:
+  repository: ehdgns8227/back-api
+  pullPolicy: Always
+  tag: "latest" # 이미지 태그를 지정합니다.
+
+imagePullSecrets:
+  - name: my-docker-registry
+
+
+# Networking
+container:
+  port: 5000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: api.hu-nie.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+service:
+  type: ClusterIP
+  port: 80
+
+metrics:
+  enabled: false # 메트릭을 사용할지 결정합니다
+  path: /metrics # 메트릭 경로를 지정합니다.
+
+pdb: 
+  enabled: false
+# HPA
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+# Volume
+pvc:
+  enabled: false
+  accessModes: "ReadWriteOnce"
+  storageClassName: "ebs-sc"
+  capacity: "1Gi"
+
+# Authentication
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+configMap:
+  enabled: false
+
+
+probes:
+  liveness:
+    enabled: false
+    path: / # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
+  readiness:
+    enabled: false
+    path: / # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
+secret:
+  enabled: false
+
