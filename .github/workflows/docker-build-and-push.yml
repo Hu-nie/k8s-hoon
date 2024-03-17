@@ -26,4 +26,4 @@ jobs:
         context: .
         file: ./src/Dockerfile
         push: true
-        tags: yourusername/yourimagename:latest
+        tags: ehdgns8227/back-api:latest
