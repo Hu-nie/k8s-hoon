@@ -3,22 +3,24 @@ from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python_operator import PythonVirtualenvOperator
 from airflow.operators.python_operator import PythonOperator
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 import requests
 
-def fetch_and_print_api_data():
+def fetch_data():
     url = "http://api.hu-nie.com/data_collect"
-    
-    # API 요청
     response = requests.get(url)
-    
     if response.status_code == 200:
-        # 성공적으로 데이터를 받아왔을 때
         data = response.json()
-        print(data)
+        with open('/tmp/my_data.json', 'w') as f:
+            f.write(str(data))
     else:
-        # 요청이 실패했을 때
-        print("API 요청에 실패했습니다. 상태 코드:", response.status_code)
+        raise Exception("API 요청 실패")
+
+
+def upload_to_s3():
+    hook = S3Hook(aws_conn_id='test')
+    hook.load_file(filename='/tmp/my_data.json', key='my_data.json', bucket_name='hoon-s3-bucket', replace=True)
 
 default_args = {
     'owner': 'airflow',
