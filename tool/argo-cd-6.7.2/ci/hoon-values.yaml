@@ -1,0 +1,16 @@
+server:
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    ingressClassName: "nginx"
+    hosts:
+      - argocd.hu-nie.com
+    tls:
+      - hosts:
+          - argocd.hu-nie.com
+        secretName: hoon  # TLS 시크릿 이름 추가
+configs:
+  params:
+    server.insecure: true
