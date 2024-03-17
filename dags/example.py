@@ -45,10 +45,14 @@ with DAG(
     start = DummyOperator(task_id = 'start')
     # 파이썬 함수 실행
     run_scraper = PythonOperator(
-        task_id='fetch_and_print_api_data',
-        python_callable=fetch_and_print_api_data,
+        task_id='fetch_data',
+        python_callable=fetch_data,
+    )
+    s3_upload = PythonOperator(
+        task_id='upload_to_s3',
+        python_callable=upload_to_s3,
     )
 
     end = DummyOperator(task_id = 'end')
 
-start >> run_scraper >> end 
+start >> run_scraper >> s3_upload >> end 
