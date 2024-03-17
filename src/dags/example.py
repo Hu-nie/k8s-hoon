@@ -2,8 +2,11 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python_operator import PythonVirtualenvOperator
-# data_scraper.py에서 main 함수를 가져옵니다.
-from data_scraper import main
+from airflow.operators.python_operator import PythonOperator
+
+def my_python_function():
+    print("Hello, Airflow!")
+    print("Current date:", datetime.now())
 
 default_args = {
     'owner': 'airflow',
@@ -27,13 +30,11 @@ with DAG(
     
     start = DummyOperator(task_id = 'start')
     # 파이썬 함수 실행
-    run_scraper = PythonVirtualenvOperator(
-        task_id='run_data_scraper',
-        python_callable=main,
-        requirements=["basketball_reference_web_scraper==4.13.0"], # 필요한 패키지와 버전
-        system_site_packages=True,
+    run_scraper = PythonOperator(
+        task_id='test',
+        python_callable=my_python_function,
     )
 
-    end = DummyOperator(task_id = 'start')
+    end = DummyOperator(task_id = 'end')
 
 start >> run_scraper >> end 
