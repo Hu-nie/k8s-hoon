@@ -16,11 +16,10 @@ def fetch_data():
             f.write(str(data))
     else:
         raise Exception("API 요청 실패")
-
-
-def upload_to_s3():
+    
     hook = S3Hook(aws_conn_id='test')
     hook.load_file(filename='/tmp/my_data.json', key='my_data.json', bucket_name='hoon-s3-bucket', replace=True)
+
 
 default_args = {
     'owner': 'airflow',
@@ -48,11 +47,7 @@ with DAG(
         task_id='fetch_data',
         python_callable=fetch_data,
     )
-    s3_upload = PythonOperator(
-        task_id='upload_to_s3',
-        python_callable=upload_to_s3,
-    )
 
     end = DummyOperator(task_id = 'end')
 
-start >> run_scraper >> s3_upload >> end 
+start >> run_scraper >> end 
