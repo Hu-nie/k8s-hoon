@@ -1,7 +1,6 @@
 from basketball_reference_web_scraper import client
 from basketball_reference_web_scraper.data import OutputType
 from datetime import date
-import pandas as pd
 import json
 
 class DataScraper:
