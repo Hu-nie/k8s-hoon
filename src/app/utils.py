@@ -22,6 +22,6 @@ def validate_request_params(args):
     
     query_date, error, status = validate_date(query_date_str)
     if error:
-        return error, status
+        return query_date, error, status
 
-    return {"query_date": query_date, "player": player_name, "team": team_name}, None
+    return {"query_date": query_date, "player": player_name, "team": team_name}, None, 200

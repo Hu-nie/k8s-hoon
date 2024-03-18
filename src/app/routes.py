@@ -14,10 +14,11 @@ async def welcome():
    
 @bp.route('/basketball/player-stats', methods=['GET'])
 async def get_player_stats():
-    params, error = validate_request_params(request.args)
+    params, error, status = validate_request_params(request.args)
+
     if error:
-        return jsonify(error), 400
-    
+        return jsonify(error), status
+
     query_date, player_name = params['query_date'], params.get('player')
     stats_scraper = BasketballStats(client, OutputType.JSON, query_date)
     
@@ -29,9 +30,9 @@ async def get_player_stats():
 
 @bp.route('/basketball/team-stats', methods=['GET'])
 async def get_team_stats():
-    params, error = validate_request_params(request.args)
+    params, error, status = validate_request_params(request.args)
     if error:
-        return jsonify(error), 400
+        return jsonify(error), status
 
     query_date, team_name = params['query_date'], params.get('team')
     stats_scraper = BasketballStats(client, OutputType.JSON, query_date)
@@ -44,9 +45,9 @@ async def get_team_stats():
 
 @bp.route('/basketball/season-standings', methods=['GET'])
 async def get_season_standings():
-    params, error = validate_request_params(request.args)
+    params, error, status = validate_request_params(request.args)
     if error:
-        return jsonify(error), 400
+        return jsonify(error), status
 
     query_date = params['query_date']
     stats_scraper = BasketballStats(client, OutputType.JSON, query_date)
@@ -56,9 +57,9 @@ async def get_season_standings():
 
 @bp.route('/basketball/team-season-record', methods=['GET'])
 async def get_team_season_record():
-    params, error = validate_request_params(request.args)
+    params, error, status  = validate_request_params(request.args)
     if error:
-        return jsonify(error), 400
+        return jsonify(error), status
 
     query_date, team_name = params['query_date'], params.get('team')
     error, status = require_param(team_name, 'team')
