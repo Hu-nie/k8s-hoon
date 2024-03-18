@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: ehdgns8227/back-api
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: "latest" # 이미지 태그를 지정합니
 
 imagePullSecrets:
