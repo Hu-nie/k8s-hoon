@@ -7,10 +7,10 @@ def fetch_player_stats(date):
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        file_path = f'/tmp/player_stats_{date}.json'
+        file_path = f'/tmp/player_stats.json'
         with open(file_path, 'w') as f:
             json.dump(data, f)
-        print(f"데이터가 성공적으로 저장되었습니다: /tmp/player_stats_{date}.json")
+        print(f"데이터가 성공적으로 저장되었습니다: /tmp/player_stats.json")
         return file_path
     else:
         raise Exception(f"API 요청 실패: 상태 코드 {response.status_code}")

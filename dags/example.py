@@ -32,7 +32,7 @@ with DAG(
         task_id='fetch_and_upload_data',
         python_callable=fetch_and_upload_player_stats,
         op_kwargs={
-            'date': '{{ yesterday_ds }}'
+            'date': '{{ ds }}'
         },
     )
 
