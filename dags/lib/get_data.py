@@ -16,7 +16,7 @@ def fetch_player_stats(date):
         raise Exception(f"API 요청 실패: 상태 코드 {response.status_code}")
 
 def upload_data_s3(file_path, date):
-    hook = S3Hook(aws_conn_id='your_aws_conn_id')
+    hook = S3Hook(aws_conn_id='test')
     hook.load_file(filename=file_path, key= f'{date}_player-stats.json', bucket_name='hoon-s3-bucket', replace=True)
 
 def fetch_and_upload_player_stats(date):
