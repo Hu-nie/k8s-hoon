@@ -29,4 +29,4 @@ jobs:
           context: ./src
           file: ./src/Dockerfile
           push: true
-          tags: ehdgns8227/back-api:latest
+          tags: ehdgns8227/back-api:${{ github.sha }}
