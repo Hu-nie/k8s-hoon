@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: ehdgns8227/back-api
   pullPolicy: Always
-  tag: "latest" # 이미지 태그를 지정합니
+  tag: "591bb99e2f65efe3494d0a0238fd6976922adc3a" # 이미지 태그를 지정합니
 
 imagePullSecrets:
   - name: my-docker-registry
