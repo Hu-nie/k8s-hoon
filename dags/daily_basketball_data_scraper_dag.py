@@ -31,7 +31,7 @@ with DAG(
     run_scraper = PythonOperator(
         task_id='fetch_and_upload_data',
         python_callable=fetch_and_upload_player_stats,
-        op_kwargs={'date_str': '{{ (execution_date - macros.timedelta(days=2)).strftime("%Y-%m-%d") }}'},  
+        op_kwargs={'date': '{{ (execution_date - macros.timedelta(days=2)).strftime("%Y-%m-%d") }}'},  
     )
     end = DummyOperator(task_id='end')
 
