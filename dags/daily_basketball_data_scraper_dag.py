@@ -4,6 +4,8 @@ from airflow.operators.dummy import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from lib.get_data import fetch_and_upload_player_stats
 
+two_days_ago = datetime.now() - timedelta(days=2)
+date_str = two_days_ago.strftime('%Y-%m-%d')
 
 default_args = {
     'owner': 'hoon',
@@ -26,14 +28,9 @@ with DAG(
     
     start = DummyOperator(task_id='start')
     
-    # 'yesterday_ds'는 Airflow가 제공하는 기본 변수 중 하나로,
-    # DAG이 실행되는 날짜(즉, 실행일 기준 '어제')를 'YYYY-MM-DD' 형식의 문자열로 제공합니다.
     run_scraper = PythonOperator(
         task_id='fetch_and_upload_data',
-        python_callable=fetch_and_upload_player_stats,
-        op_kwargs={
-            'date': '{{ ds }}'
-        },
+        python_callable=fetch_and_upload_player_stats(date_str),
     )
 
     end = DummyOperator(task_id='end')
