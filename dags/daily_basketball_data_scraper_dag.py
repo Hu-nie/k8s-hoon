@@ -22,7 +22,7 @@ with DAG(
     'Basketball_Data_Scraper',
     default_args=default_args,
     description='A simple DAG to run Basketball_Data_Scraper.py',
-    schedule_interval='20 15 * * *',  # 매일 자정에 실행
+    schedule_interval='30 6 * * *',  # 매일 자정에 실행
     catchup=False,
 ) as dag:
     
