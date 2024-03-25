@@ -1,0 +1,30 @@
+grafana:
+  defaultDashboardsTimezone: Asia/Seoul
+  adminPassword: 77g0q0PTIm6a
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+    - grafana.hu-nie.com
+    tls:
+    - hosts:
+      - grafana.hu-nie.com
+  persistence:
+    enabled: true
+    storageClassName: longhorn
+    size: 1Gi
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    retention: 31d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
+
+
