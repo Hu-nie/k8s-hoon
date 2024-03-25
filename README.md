@@ -1,4 +1,8 @@
 # 짠내나는 데이터 파이프라인 구축기
+![workflow](https://github.com/github/docs/actions/workflows/docker-build-and-push.yml/badge.svg)
+
+<img src="https://img.shields.io/github/commit-activity/w/beygee/survive"/>
+
 
 # **목적** :
 - ### **데이터 파이프라인 구축 및 개념 정리**: 
@@ -35,3 +39,16 @@
 
 # 프로젝트 구조
 ![poster](./resources/System_architecture.png)
+
+# DNS 관리
+
+| Type | Host | Value          | TTL  |
+|------|------|----------------|------|
+| A    | www  | 221.138.94.165 | 1800 |
+| A    | @    | 21.138.94.165  | 1800 |
+| A    |airflow | 221.138.94.165 | 1800 |
+| A    |api| 221.138.94.165 | 1800 |
+| A    |argocd | 221.138.94.165 | 1800 |
+| A    |grafana | 221.138.94.165 | 1800 |
+
+
