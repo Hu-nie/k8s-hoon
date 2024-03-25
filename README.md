@@ -1,7 +1,18 @@
 # 짠내나는 데이터 파이프라인 구축기
-![workflow](https://github.com/github/docs/actions/workflows/docker-build-and-push.yml/badge.svg)
+![workflow](https://github.com/hu-nie/k8s-hoon/actions/workflows/docker-build-and-push.yml/badge.svg) <img src="https://img.shields.io/github/commit-activity/w/Hu-nie/k8s-hoon"/> <img src="https://img.shields.io/github/repo-size/Hu-nie/k8s-hoon"/> 
 
-<img src="https://img.shields.io/github/commit-activity/w/beygee/survive"/>
+
+<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white"/>
+<img src="https://img.shields.io/badge/Ansible-EE0000?style=flat&logo=kubernetes&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Airflow-017CEE?style=flat&logo=apacheairflow&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Gunicorn-499848?style=flat&logo=gunicorn&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white"/> 
+<img src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat&logo=argo&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Github-181717?style=flat&logo=github&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Actions-2088FF?style=flat&logo=githubactions&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat&logo=prometheus&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Grafana-F46800?style=flat&logo=grafana&logoColor=white"/> 
+<img src="https://img.shields.io/badge/S3-569A31?style=flat&logo=amazons3&logoColor=white"/> 
 
 
 # **목적** :
