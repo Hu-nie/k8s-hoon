@@ -3,7 +3,7 @@ import json
 import requests
 
 def fetch_player_stats(date):
-    url = f"http://api.hu-nie.com/basketball/player-stats?date={date}"
+    url = f"http://api.hu-nie.com/stats/player-stats?date={date}"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
