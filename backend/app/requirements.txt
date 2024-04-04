@@ -1,3 +1,3 @@
-flask[async]
+fastapi
 basketball_reference_web_scraper
-gunicorn
+uvicorn
