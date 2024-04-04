@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
+      - 'app/**'
 
 jobs:
   build-and-push:
@@ -26,7 +26,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./src
-          file: ./src/Dockerfile
+          context: ./app
+          file: ./app/Dockerfile
           push: true
           tags: ehdgns8227/back-api:${{ github.sha }}
