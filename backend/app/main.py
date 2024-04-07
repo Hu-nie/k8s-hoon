@@ -5,7 +5,7 @@ import logging
 
 logging.basicConfig(filename='app.log', level=logging.INFO)
 app = FastAPI()
-
+ 
 
 app.include_router(stats.router)
 
