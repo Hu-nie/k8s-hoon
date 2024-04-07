@@ -29,4 +29,5 @@ jobs:
           context: ./backend/app 
           file: ./backend/app/Dockerfile 
           push: true
-          tags: ehdgns8227/back-api:${{ github.sha }}
+          # tags: ehdgns8227/back-api:${{ github.sha }}
+          tags: ehdgns8227/back-api:latest
