@@ -3,7 +3,7 @@ from routers import stats
 import uvicorn
 import logging
 
-logging.basicConfig(filename='/var/log/app.log', level=logging.INFO)
+logging.basicConfig(filename='app.log', level=logging.INFO)
 app = FastAPI()
 
 
