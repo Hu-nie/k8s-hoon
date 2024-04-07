@@ -6,7 +6,8 @@ from datetime import date
 from fastapi.responses import JSONResponse
 from basketball_reference_web_scraper import client
 from basketball_reference_web_scraper.data import OutputType
-
+import threading
+import logging
 
 router = APIRouter(
     prefix="/stats",
@@ -14,7 +15,7 @@ router = APIRouter(
 )
 
 @router.get('/')
-async def welcome():
+def welcome():
     """
     API 가동 상태 확인 엔드포인트.
     """
@@ -32,7 +33,9 @@ def player_stats(date: date = Query(...), name: Optional[str] = None):
         stats = stats_scraper.specific_player_stats(name)
     else:
         stats = stats_scraper.daily_player_stats()
-
+    thread_id = threading.get_ident()  # 현재 스레드 ID를 가져옵니다
+    logging.info(f"Handling request in thread {thread_id}")  # 로깅
+    
     return JSONResponse(content=stats)
 
 @router.get('/team_stats/')
