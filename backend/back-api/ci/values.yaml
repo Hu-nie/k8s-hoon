@@ -12,7 +12,7 @@ imagePullSecrets:
 rollingUpdate:
   maxSurge: "25%"
   maxUnavailable: "25%"
-  
+
 # Networking
 container:
   port: 8000 
@@ -63,8 +63,8 @@ configMap:
 
 probes:
   liveness:
-    enabled: false
-    path: / # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
+    enabled: true
+    path: /stats # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
   readiness:
     enabled: true
     path: /stats # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
