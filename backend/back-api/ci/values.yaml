@@ -9,7 +9,10 @@ image:
 imagePullSecrets:
   - name: my-docker-registry
 
-
+rollingUpdate:
+  maxSurge: "25%"
+  maxUnavailable: "25%"
+  
 # Networking
 container:
   port: 8000 
@@ -37,8 +40,8 @@ pdb:
   enabled: false
 # HPA
 autoscaling:
-  enabled: false
-  minReplicas: 1
+  enabled: ture
+  minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
 
@@ -63,8 +66,8 @@ probes:
     enabled: false
     path: / # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
   readiness:
-    enabled: false
-    path: / # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
+    enabled: true
+    path: /stats # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
 secret:
   enabled: false
 
