@@ -9,6 +9,9 @@ image:
 imagePullSecrets:
   - name: my-docker-registry
 
+rollingUpdate:
+  maxSurge: "25%"
+  maxUnavailable: "25%"
 
 # Networking
 container:
@@ -30,15 +33,15 @@ service:
   port: 80
 
 metrics:
-  enabled: false # 메트릭을 사용할지 결정합니다
+  enabled: ture # 메트릭을 사용할지 결정합니다
   path: /metrics # 메트릭 경로를 지정합니다.
 
 pdb: 
   enabled: false
 # HPA
 autoscaling:
-  enabled: false
-  minReplicas: 1
+  enabled: ture
+  minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
 
@@ -60,11 +63,11 @@ configMap:
 
 probes:
   liveness:
-    enabled: false
-    path: / # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
+    enabled: true
+    path: /stats # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
   readiness:
-    enabled: false
-    path: / # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
+    enabled: true
+    path: /stats # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
 secret:
   enabled: false
 
