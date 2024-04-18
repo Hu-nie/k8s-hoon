@@ -1,5 +1,5 @@
 # Replica count
-replicaCount: 2
+replicaCount: 4
 
 image:
   repository: ehdgns8227/back-api
