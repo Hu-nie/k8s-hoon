@@ -1,5 +1,5 @@
 # Replica count
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: ehdgns8227/back-api
@@ -66,7 +66,7 @@ probes:
     enabled: false
     path: /stats # liveness 경로를 바꿀 수 있습니다 e.g. /healthz
   readiness:
-    enabled: true
+    enabled: false
     path: /stats # readiness 경로를 바꿀 수 있습니다 e.g. /healthz
 secret:
   enabled: false
