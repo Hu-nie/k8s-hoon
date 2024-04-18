@@ -1,6 +1,5 @@
 # Replica count
-replicaCount: 4
-
+replicaCount: 1
 image:
   repository: ehdgns8227/back-api
   pullPolicy: Always
@@ -59,7 +58,14 @@ serviceAccount:
   name: ""
 configMap:
   enabled: false
-
+# Conatiner resources
+resources:
+  limits:
+    cpu: 1000m
+    # memory: 1.2Gi
+  requests:
+    cpu: 1000m
+    # memory: 1.2Gi
 
 probes:
   liveness:
