@@ -1,5 +1,5 @@
 # Replica count
-replicaCount: 1
+replicaCount: 2
 image:
   repository: ehdgns8227/back-api
   pullPolicy: Always
@@ -11,6 +11,7 @@ imagePullSecrets:
 rollingUpdate:
   maxSurge: "25%"
   maxUnavailable: "25%"
+
 
 # Networking
 container:
